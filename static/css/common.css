@@ -1,0 +1,12 @@
+body {
+    padding-top: 60px;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+    display: block;
+    z-index: 100;
+    left: 0;
+    top: 0;
+}
