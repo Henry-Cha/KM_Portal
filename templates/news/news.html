@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="board">
+          <ul>
+            <li class="first">
+              <a href="" class="on">일반</a>
+				<div style="visibility: visible;">
+	                <ul class="subject">
+<li class="first"><a href="{{href1}}" target="blank">{{sub1}}</a><span>{{wrt1}}</span><span>{{date1}}</span></li>
+<li><a href="{{href2}}" target="blank">{{sub2}}</a><span>{{wrt2}}</span><span>{{date2}}</span></li>
+<li><a href="{{href3}}" target="blank">{{sub3}}</a><span>{{wrt3}}</span><span>{{date3}}</span></li>
+<li><a href="{{href4}}" target="blank">{{sub4}}</a><span>{{wrt4}}</span><span>{{date4}}</span></li>
+<li><a href="{{href5}}" target="blank">{{sub5}}</a><span>{{wrt5}}</span><span>{{date5}}</span></li>
+	                </ul>
+				</div>
+            </li>
+        </ul>
+</div>
+{% endblock %}

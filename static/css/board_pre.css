@@ -1,0 +1,33 @@
+.board {
+	 margin: 0 5px 5px 0; width: 600px; border: 1px solid #e3e3e3; overflow: hidden; background-color: #fff;
+}
+.subject {
+    top: 75px;
+    left: 0;
+    width: 100%;
+}
+.board li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    list-style-type: none;
+}
+.subject span {
+    margin: 0 3px;
+        float: left;
+}
+
+.subject a {
+    line-height: 32px;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    float: left;
+    width: 65%;
+}
+
+a, a:hover, a:visited a:active, a:focus {
+    color: #131313;
+    text-decoration: none;
+}
