@@ -4,36 +4,40 @@
     <div class="board_title">
         <strong>게시판</strong>
     </div>    
-{% if postList %}
-  <ul>
-  {% for post in postList %}
-  <li><a href="/board/{{ post.id }}/">{{ post.title }}</a></li>
-  {% endfor %}
-  </ul>
-{% else %}
-  <p>게시물이 없습니다.</p>
-{% endif %}
-    
-    <div>
-        <ul>
-            <li class="top">번호</li>
-            <li class="top">제목</li>
-            <li class="top">작성자</li>
-            <li class="top">작성일</li>
-            <li class="top">조회수</li>
-        </ul>
-    </div>
-    
-    <div>
-        <div class="num">1</div>
-        <div class="title"><a href="#">제목 test</a></div>
-        <div class="writer">김계명</div>
-        <div class="date">21.08.15.</div>
-        <div class="count">33</div>              
-    </div>
-    
-    <div class="bt">
-        <a href="write/">글작성</a>
-    </div>
-
+<div class="container">
+    <form id="boardForm" name="boardForm" method="post">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>날짜</th>
+                    <th>조회수</th>
+                </tr>
+            </thead>
+            {% if postList %}
+            <tbody>
+  		{% for post in postList %}
+                    <tr>
+                        <td>{{post.id}}</td>
+                        <td><a href="/board/{{ post.id }}/">{{ post.title }}</a></td>
+                        <td><a href="/board/{{ post.id }}/">{{ post.writer }}</a></td>
+                        <td><a href="/board/{{ post.id }}/">{{ post.date }}</a></td>
+                        <td><a href="/board/{{ post.id }}/">{{ post.hits }}</a></td>
+                    </tr>
+  		 {% endfor %}
+		{% else %}
+		<tr>
+  			<p>게시물이 없습니다.</p>
+		</tr>
+		{% endif %}
+            </tbody>
+        </table>
+        
+        <div>            
+        <a href="write/" class="btn btn-success">글작성</a>          
+        </div>
+    </form>
+</div>
 {% endblock %}

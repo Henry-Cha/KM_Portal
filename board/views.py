@@ -12,11 +12,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
-
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 def write(request):
     return render(request, 'board/write.html')
+    
+def write_create(request):
+    if request.method == "POST":
+        writer = ""
+        title = request.POST['title']
+        content = request.POST['content']
+        post = Post(writer=writer, title=title, content=content, date=timezone.now())
+        post.save()
+        return HttpResponseRedirect('/board')
+    else:
+        return render(request, 'board/list.html')
 
 def index(request):
     # 게시물 목록 출력
@@ -34,4 +44,4 @@ def answer_create(request,postId):
     # 답글 추가
     post = get_object_or_404(Post, pk=postId)
     post.answer_set.create(content=request.POST.get('content'),writer="",date=timezone.now())
-    return redirect('board:index')
+    return redirect('board:detail', postId=postId)

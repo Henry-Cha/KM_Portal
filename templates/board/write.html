@@ -1,15 +1,15 @@
 {% extends 'main.html' %}
 {% block content %}
 
-    <form action="" method="post"> <!-- action에 데이터 넣을 url입력 / 그 url에서 form내용을 db에 저장하는 함수 호출 -->
-        {% csrf_token %}
-        <p>제목<br><textarea name="title" id="title" minmaxlength="1" maxlength="40" cols="200" rows="1"></textarea></p>
-        <p>내용<br><textarea name="content" id="content" minmaxlength="1" maxlength="400" cols="200" rows="8"></textarea></p>
-        <input type="submit" value="등록">
-    </form>
+    <div>
+        <form action="{% url 'board:write_create' %}" method="post">
+            {% csrf_token %}
+            <p>제목<br><textarea name='title' minmaxlength="1" maxlength="400" cols="200" rows="1"></textarea></p>
+            <p>내용<br><textarea name='content' minmaxlength="1" maxlength="400" cols="200" rows="8"></textarea></p>
+            <input type="submit" value="등록">
+        </form>
+    </div>
     <div>
         <a href="/board" role="button">취소</a>
     </div>
 {% endblock %}
-
-<!-- {% url 'board:write' %} -->
