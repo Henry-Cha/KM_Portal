@@ -1,0 +1,17 @@
+<h1> {{ post.title }} </h1>
+{{ post.content}} {{ writer }} {{ post.date}}
+
+<h5 class="border-bottom my-3 py-2">{{post.answer_set.count}}개의 답글이 있습니다.</h5>
+<div>
+    <ul>
+        {% for answer in post.answer_set.all %}
+            <li>{{ answer.content }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<form action="{% url 'board:answer_create' post.id %}" method="post">
+    {% csrf_token %}
+    <textarea name="content" id="content" rows="10"></textarea>
+    <input type="submit" value="답글등록">
+</form>

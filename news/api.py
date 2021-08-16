@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import datetime
 
 
 def check_standard():
@@ -105,7 +106,7 @@ def check_nonsub():
     n = 1
 
     soup = BeautifulSoup(xml, 'html.parser')
-    #datalist = soup.find('ul', class_="extra_card").findAll('li')
+    #datalist = soup.find('section').find('div')#.findAll('div',class_='cardInfo')
     # for i in datalist:
     #     data[f"non_title{n}"] = (i.find('div', class_="cardInfo").find('h4').text)
     #     data[f"non_date{n}"] = (i.find('div', class_="cardInfo").find('strong').text)
@@ -114,3 +115,38 @@ def check_nonsub():
     #     if n is 10:
     #         break;
     return data
+
+def check_dormitory():
+    data = {}
+    url = "https://dorm.kmu.ac.kr/dorm/index.do"
+    res = requests.get(url)
+    xml = res.text
+    n = 1
+
+    soup = BeautifulSoup(xml, 'html.parser')
+    datalist = soup.find('ul',class_="recentBbsInnerUl").findAll('li',class_="recentBbsInnerLi")
+    for i in datalist:
+        data[f"do_sub{n}"] = (i.find('strong').text)
+        data[f"do_href{n}"] = 'https://dorm.kmu.ac.kr'+(i.find('a')["href"])
+        data[f"do_date{n}"] = (i.find('dd').text)
+        n = n+1
+    return data
+
+def check_calendar():
+    data = {}
+    url = "https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=3373&"
+    res = requests.get(url)
+    xml = res.text
+    n = 1
+    dt_now = datetime.datetime.now()
+    mon = dt_now.month
+    
+    soup = BeautifulSoup(xml, 'html.parser')
+    datalist = soup.find('tbody',class_=f"ul_{mon}").findAll('tr')
+    for i in datalist:
+        data[f"ca_sub{n}"] = (i.find('li').text)
+        data[f"ca_date{n}"] = (i.find('td',class_="taC").text)
+        n = n+1
+    data["ca_num"] = n
+    return data
+

@@ -1,8 +1,9 @@
 {% extends 'main.html' %}
 {% block content %}
+<div class="conainter">
+    <div class="row">
+<div style="padding: 20px;">
 <div class="board">
-          <ul>
-            <li class="first">
               <a href="https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=143&" target="blank" class="on">일반</a>
 				<div style="visibility: visible;">
 	                <ul class="subject">
@@ -13,13 +14,9 @@
 <li><a href="{{st_href5}}" target="blank">{{st_sub5}}</a><span>{{st_wrt5}}</span><span>{{st_date5}}</span></li>
 	                </ul>
 				</div>
-            </li>
-        </ul>
 </div>
 
 <div class="board">
-          <ul>
-            <li class="first">
               <a href="https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=144&" target="blank" class="on">학사</a>
 				<div style="visibility: visible;">
 	                <ul class="subject">
@@ -30,13 +27,9 @@
 <li><a href="{{ac_href5}}" target="blank">{{ac_sub5}}</a><span>{{ac_wrt5}}</span><span>{{ac_date5}}</span></li>
 	                </ul>
 				</div>
-            </li>
-        </ul>
 </div>
 
 <div class="board">
-          <ul>
-            <li class="first">
               <a href="https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=145&" target="blank" class="on">장학</a>
 				<div style="visibility: visible;">
 	                <ul class="subject">
@@ -47,13 +40,9 @@
 <li><a href="{{aw_href5}}" target="blank">{{aw_sub5}}</a><span>{{aw_wrt5}}</span><span>{{aw_date5}}</span></li>
 	                </ul>
 				</div>
-            </li>
-        </ul>
 </div>
 
 <div class="board">
-          <ul>
-            <li class="first">
               <a href="https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=147&" target="blank" class="on">모집</a>
 				<div style="visibility: visible;">
 	                <ul class="subject">
@@ -64,13 +53,9 @@
 <li><a href="{{cr_href5}}" target="blank">{{cr_sub5}}</a><span>{{cr_wrt5}}</span><span>{{cr_date5}}</span></li>
 	                </ul>
 				</div>
-            </li>
-        </ul>
 </div>
 
 <div class="board">
-          <ul>
-            <li class="first">
               <a href="https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=3445&" target="blank" class="on">취업</a>
 				<div style="visibility: visible;">
 	                <ul class="subject">
@@ -81,13 +66,9 @@
 <li><a href="{{jo_href5}}" target="blank">{{jo_sub5}}</a><span>{{jo_wrt5}}</span><span>{{jo_date5}}</span></li>
 	                </ul>
 				</div>
-            </li>
-        </ul>
 </div>
 
 <div class="board">
-          <ul>
-            <li class="first">
               <a href="https://story.kmu.ac.kr/user/Ep/EpMng010L.do?CURRENT_MENU_CODE=MENU0052&TOP_MENU_CODE=MENU0004&PRM_ORDER=2" target="blank" class="on">비교과 프로그램</a>
 				<div style="visibility: visible;">
 	                <ul class="subject">
@@ -98,7 +79,48 @@
 <li><a href="https://story.kmu.ac.kr/user/Ep/EpMng010L.do?CURRENT_MENU_CODE=MENU0052&TOP_MENU_CODE=MENU0004&PRM_ORDER=2" target="blank">{{non_title}}</a><span>{{non_date}}</span><span>{{non_mem}}</span></li>
 	                </ul>
 				</div>
-            </li>
-        </ul>
+</div>
+
+<div class="board">
+              <a href="https://dorm.kmu.ac.kr/dorm/index.do" target="blank" class="on">명교생활관</a>
+				<div style="visibility: visible;">
+	                <ul class="subject">
+<li class="first"><a href='{{do_href1}}' target="blank">{{do_sub1}}</a><span style="width:75px;"> &nbsp</span><span>{{do_date1}}</span></li>
+<li><a href="{{do_href2}}" target="blank">{{do_sub2}}</a><span style="width:75px;">&nbsp </span><span>{{do_date2}}</span></li>
+<li><a href="{{do_href3}}" target="blank">{{do_sub3}}</a><span style="width:75px;"> &nbsp</span><span>{{do_date3}}</span></li>
+<li><a href="{{do_href4}}" target="blank">{{do_sub4}}</a><span style="width:75px;"> &nbsp</span><span>{{do_date4}}</span></li>
+<li><a href="{{do_href5}}" target="blank">{{do_sub5}}</a><span style="width:75px;"> &nbsp</span><span>{{do_date5}}</span></li>
+	                </ul>
+				</div>
+</div>
+
+<div class="board">
+              <a href="https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=3373&" target="blank" class="on">학사일정</a>
+				<div style="visibility: visible;">
+	                <ul class="subject_cal">
+                        <li style="list-style-type: disc;"><span>{{ca_date1}}</span><span style="width: 60%;">{{ca_sub1}}</span></li>
+                        <li style="list-style-type: disc;"><span>{{ca_date2}}</span><span style="width: 60%;">{{ca_sub2}}</span></li>
+                        <li style="list-style-type: disc;"><span>{{ca_date3}}</span><span style="width: 60%;">{{ca_sub3}}</span></li>
+                        <li style="list-style-type: disc;"><span>{{ca_date4}}</span><span style="width: 60%;">{{ca_sub4}}</span></li>
+                        <li style="list-style-type: disc;"><span>{{ca_date5}}</span><span style="width: 60%;">{{ca_sub5}}</span></li>
+	                </ul>
+				</div>
+</div>
+
+
+<div class="board">
+              <a href="https://bookmarkmoa.com/" target="blank" class="on">유용한 사이트 모음</a>
+				<div style="visibility: visible;">
+	                <ul class="subject" style="margin: auto; padding: auto;">
+<li class="first" style="margin: auto; padding: auto;"><a href="www.riss.kr/index.do" target="blank"> <i class="fa fa-angle-double-right"></i>riss </a><span style="width: 60%;">논문 모음,정리</span></li>
+<li style="margin: auto; padding: auto;"><a href="www.superookie.com/" target="blank"> <i class="fa fa-angle-double-right"></i>슈퍼루키 </a><span style="width: 60%;">대외활동,공모전 모음</span></li>
+<li style="margin: auto; padding: auto;"><a href="https://gongu.copyright.or.kr/gongu/main/main.do" target="blank"> <i class="fa fa-angle-double-right"></i>공유마당 </a><span style="width: 60%;">저작권 무료 고품질 사진</span></li>
+<li style="margin: auto; padding: auto;"><a href="https://www.kinds.or.kr/" target="blank"> <i class="fa fa-angle-double-right"></i>빅카인즈 </a><span style="width: 60%;">신문 방송 등 국내 주요 언론사 뉴스 모음</span></li>
+<li style="margin: auto; padding: auto;"><a href="https://www.miricanvas.com/" target="blank"> <i class="fa fa-angle-double-right"></i>미리캔버스 </a><span style="width: 60%;">PPT,로고,배너 등 무료 디자인 툴</span></li>
+	                </ul>
+				</div>
+</div>
+</div>
+    </div>
 </div>
 {% endblock %}

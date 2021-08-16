@@ -8,4 +8,6 @@ def index(request):
     cr_data = check_recruit()
     jo_data = check_job()
     non_data = check_nonsub()
-    return render(request, 'news/news.html',{**st_data,**ac_data,**aw_data,**cr_data,**jo_data,**non_data})
+    do_data = check_dormitory()
+    ca_date = check_calendar()
+    return render(request, 'news/news.html',{**st_data,**ac_data,**aw_data,**cr_data,**jo_data,**do_data,**ca_date})

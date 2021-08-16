@@ -6,14 +6,35 @@
     left: 0;
     width: 100%;
 }
+
 .board li {
     display: list-item;
     text-align: -webkit-match-parent;
     list-style-type: none;
 }
+
+.board .on{
+    margin-left: 10px;
+    font-weight: 600;
+}
+
 .subject span {
     margin: 0 3px;
-        float: left;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 15%;
+}
+.subject_cal span {
+    margin: 0 3px;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 20%;
 }
 
 .subject a {
