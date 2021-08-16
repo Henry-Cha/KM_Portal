@@ -1,23 +1,15 @@
-# from django.shortcuts import render
-# from django.http import HttpResponse
-
-# def index(request):
-#     return render(request, 'board/list.html')
-
-# def write(request):
-#     return render(request, 'board/write.html')
-
-# ##################################################
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
 from django.http import HttpResponse, HttpResponseRedirect
+from django.core.paginator import Paginator
 
 def write(request):
+    #게시글 작성화면
     return render(request, 'board/write.html')
     
 def write_create(request):
+    #게시글 작성
     if request.method == "POST":
         writer = ""
         title = request.POST['title']
@@ -29,9 +21,15 @@ def write_create(request):
         return render(request, 'board/list.html')
 
 def index(request):
-    # 게시물 목록 출력
-    postList = Post.objects.order_by('-date')
-    context = {'postList': postList}
+        # 게시물 목록 출력
+    postList = Post.objects.all().order_by('-date')
+    postNum = Post.objects.count()
+        #페이징처리
+    page = request.GET.get('page', '1')
+    paginator = Paginator(postList, '3')
+    page_obj = paginator.page(page)
+    
+    context = {'postList': postList,'postNum':postNum,'page_obj':page_obj}
     return render(request, 'board/list.html', context)
 
 def detail(request, postId):
