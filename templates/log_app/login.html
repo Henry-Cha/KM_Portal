@@ -73,7 +73,7 @@
 <div class="main-div">
     <div class="panel">
    <h2>KM_PORTAL</h2>
-        {{error}}
+        <strong>{{error}}</strong>
    </div>
     <form id="Login" action="{% url 'log_app:Login' %}" method="POST">
       {% csrf_token %}
@@ -91,7 +91,6 @@
         </div>
 
         <div class="forgot">
-            <a href="reset.html">비밀번호 찾기</a>
             <a href="{% url 'log_app:Signup' %}">회원가입</a>
         </div>
 

@@ -4,6 +4,8 @@ from .models import Post
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
 from .Forms import PostForm
+from .decorators import *
+from django.contrib import messages
 
 def write(request):
     #게시글 작성화면
@@ -36,8 +38,25 @@ def index(request):
 def detail(request, postId):
     # 상세보기
     post = Post.objects.get(id=postId)
-    context = {'post': post}
+    if request.user == post.user:
+        post_auth = True
+    else:
+        post_auth = False
+
+    context = {'post': post,'post_auth': post_auth,}
     return render(request, 'board/detail.html', context)
+
+@login_message_required
+def boardDelete(request, postId):
+    post = Post.objects.get(id=postId)
+    if post.user == request.user:
+        post.delete()
+        messages.success(request, "삭제되었습니다.")
+        return redirect('/board/')
+    else:
+        messages.error(request, "본인 게시글이 아닙니다.")
+        return redirect('/board/'+str(postId))
+
 
 def answer_create(request,postId):
     # 답글 추가

@@ -34,8 +34,12 @@
 		{% endif %}
             </tbody>
         </table>
-        <div>            
-        <a href="write/" class="btn btn-success">글작성</a>   
+        <div>
+            {% if user.is_authenticated %}
+        <a href="write/" class="btn btn-success">글작성</a>
+            {% else %}
+            <a href="{% url 'log_app:Login' %}" class="btn btn-success">글작성</a>
+            {% endif %}
         </div>
     </form>
         <!-- Pagination -->
