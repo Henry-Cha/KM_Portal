@@ -3,25 +3,25 @@ from django.utils import timezone
 from .models import Post
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
-from .Forms import PostForm
+from .forms import PostForm
 from .decorators import *
 from django.contrib import messages
 
+@login_message_required
 def write(request):
-    #게시글 작성화면
-    return render(request, 'board/write.html')
-    
-def write_create(request):
-    #게시글 작성
     if request.method == "POST":
         user = request.user
         title = request.POST['title']
         content = request.POST['content']
         post = Post(user=user, title=title, content=content, date=timezone.now())
         post.save()
-        return HttpResponseRedirect('/board')
+        return redirect('/board')
     else:
-        return render(request, 'board/list.html')
+        form = PostForm()
+
+    return render(request, "board/write.html", {'form': form})
+
+
 
 def index(request):
         # 게시물 목록 출력
@@ -57,6 +57,30 @@ def boardDelete(request, postId):
         messages.error(request, "본인 게시글이 아닙니다.")
         return redirect('/board/'+str(postId))
 
+@login_message_required
+def boardEdit(request, postId):
+    post = Post.objects.get(id=postId)
+    
+    if request.method == "POST":
+        if(post.user == request.user):
+            title = request.POST['title']
+            content = request.POST['content']
+            post = Post(id=postId,user=request.user, title=title, content=content, date=timezone.now())
+            post.save()
+            messages.success(request, "수정되었습니다.")
+            return redirect('/board/'+str(postId))
+    else:
+        post = Post.objects.get(id=postId)
+        if post.user == request.user:
+            form = PostForm(instance=post)
+            context = {
+                'form': form,
+                'edit': '수정하기',
+            }
+            return render(request, "board/write.html", context)
+        else:
+            messages.error(request, "본인 게시글이 아닙니다.")
+            return redirect('/board/'+str(postId))
 
 def answer_create(request,postId):
     # 답글 추가
