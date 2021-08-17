@@ -3,6 +3,7 @@ from django.utils import timezone
 from .models import Post
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.paginator import Paginator
+from .Forms import PostForm
 
 def write(request):
     #게시글 작성화면
@@ -11,10 +12,10 @@ def write(request):
 def write_create(request):
     #게시글 작성
     if request.method == "POST":
-        writer = ""
+        user = request.user
         title = request.POST['title']
         content = request.POST['content']
-        post = Post(writer=writer, title=title, content=content, date=timezone.now())
+        post = Post(user=user, title=title, content=content, date=timezone.now())
         post.save()
         return HttpResponseRedirect('/board')
     else:
@@ -26,7 +27,7 @@ def index(request):
     postNum = Post.objects.count()
         #페이징처리
     page = request.GET.get('page', '1')
-    paginator = Paginator(postList, '3')
+    paginator = Paginator(postList, '10')
     page_obj = paginator.page(page)
     
     context = {'postList': postList,'postNum':postNum,'page_obj':page_obj}
@@ -41,5 +42,5 @@ def detail(request, postId):
 def answer_create(request,postId):
     # 답글 추가
     post = get_object_or_404(Post, pk=postId)
-    post.answer_set.create(content=request.POST.get('content'),writer="",date=timezone.now())
+    post.answer_set.create(content=request.POST.get('content'),user=request.user,date=timezone.now())
     return redirect('board:detail', postId=postId)

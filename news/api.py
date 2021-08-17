@@ -134,6 +134,8 @@ def check_dormitory():
 
 def check_calendar():
     data = {}
+    ca_sub = []
+    ca_date = []
     url = "https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=3373&"
     res = requests.get(url)
     xml = res.text
@@ -144,9 +146,11 @@ def check_calendar():
     soup = BeautifulSoup(xml, 'html.parser')
     datalist = soup.find('tbody',class_=f"ul_{mon}").findAll('tr')
     for i in datalist:
-        data[f"ca_sub{n}"] = (i.find('li').text)
-        data[f"ca_date{n}"] = (i.find('td',class_="taC").text)
+        ca_sub.append(i.find('li').text)
+        ca_date.append(i.find('td',class_="taC").text)
         n = n+1
-    data["ca_num"] = n
+    
+    data = dict(zip(ca_sub,ca_date))
+    #data["ca_num"] = n
     return data
 

@@ -18,16 +18,16 @@
             </thead>
             {% if page_obj %}
             <tbody>
-  		{% for post in page_obj %}
+  		        {% for post in page_obj %}
                     <tr>
                         <td>{{post.id}}</td>
                         <td><a href="/board/{{ post.id }}/">{{ post.title }}</a></td>
-                        <td><a href="/board/{{ post.id }}/">{{ post.writer }}</a></td>
+                        <td><a href="/board/{{ post.id }}/">{{ post.user }}</a></td>
                         <td><a href="/board/{{ post.id }}/">{{ post.date }}</a></td>
                         <td><a href="/board/{{ post.id }}/">{{ post.hits }}</a></td>
                     </tr>
-  		 {% endfor %}
-		{% else %}
+  		         {% endfor %}
+		    {% else %}
 		<tr>
   			<td>게시물이 없습니다.</td>
 		</tr>

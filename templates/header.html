@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">  
   <div class="container-fluid">
     <a class="navbar-brand" href="/">KM포털</a>
@@ -29,14 +30,25 @@
                   <li class="nav-item">
           <a class="nav-link" href="{% url 'news:index' %}">&nbsp&nbsp소식&nbsp&nbsp</a>
         </li>
-         </li>
-                  <li class="nav-item">
-          <a class="nav-link" href="#">&nbsp&nbsp로그인&nbsp&nbsp</a>
-        </li>
+
+
+        
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+                         {% if user.is_authenticated %}
+          <div style="display:flex; align-items:center;">
+               <p style="margin:0;"> {{user.username}}님 안녕하세요.</p>
+          </div>                            
+          <a class="nav-link btn-primary" style="background-color: #ffebb8; color: #171717; margin-left:10px;" href="{% url 'log_app:Logout' %}">&nbsp&nbsp로그아웃&nbsp&nbsp</a>
+
+                {% else %}
+ 
+          <a class="nav-link btn-primary" style="background-color: #ffebb8; color: #171717;" href="{% url 'log_app:Signup' %}">&nbsp&nbsp회원가입&nbsp&nbsp</a>
+  
+  
+          <a class="nav-link btn-primary" style="background-color: #ffebb8; color: #171717; margin-left:10px;" href="{% url 'log_app:Login' %}">&nbsp&nbsp로그인&nbsp&nbsp</a>
+   
+        {% endif %}
       </form>
     </div>
   </div>
