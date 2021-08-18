@@ -11,8 +11,7 @@ class PostForm(ModelForm):
             'placeholder': '제목을 입력해주세요.',
             'class': 'form-control',
             'autofocus': True,
-        })
-        
+        })        
     class Meta:
         model = FreePosting # 수정 : Post >> FreePosting 변경
         fields = ['title', 'content']

@@ -20,20 +20,7 @@
         </div>
     </div>
 </div>
-<div>
-    <ul>
-        {% for answer in lst %} <!---->
-        <li>{{ answer.content }}</li>
-        {% endfor %}
-    </ul>
-</div>
-<form action="/board/{{url}}/answer/create/{{post.id}}/" method="POST">
-    {% csrf_token %}
-    <textarea name="content" id="content" rows="10"></textarea>
-    {% if user.is_authenticated %}
-    <input type="submit" value="답글등록">
-    {% endif %}
-</form>
+<!--수정, 삭제 -->
 <div>
     {% if post_auth %}
      <button class="btn btn-sm" onclick="location.href='/board/{{url}}/edit/{{ post.id }}'">수정</button>
@@ -43,6 +30,56 @@
 </div>
 <div>
     <a href="/board/{{url}}" role="button">목록</a> <!-- 수정 : href /board >> /board/{{url}} -->
+</div>
+<!--댓글-->
+<div class="card">
+    <div class="card-header">
+        <div class="col-md-12">
+            <form action="/board/{{url}}/answer/create/{{post.id}}/" method="POST">
+            {% csrf_token %}
+                {% if user.is_authenticated %}
+            <div class="form-group row">
+                <textarea class="form-control" id="content" name="content" rows="3" placeholder="댓글을 입력해주세요." minlength='0' maxlength="400"></textarea>
+            </div>
+            <div class="text-right" style="float:right">
+                    <input type="submit" value="답글등록">
+            </div>
+                {% else %}
+                        <div class="form-group row">
+                            <textarea class="form-control" id="content" name="content" rows="3" placeholder="로그인 후 사용이 가능합니다."></textarea>
+                        </div>
+                {% endif %}
+            </form>
+        </div>
+        <hr>
+        <div id="more_comment">
+            {% if lst %}
+                {% for answer in lst %}
+                <div id='{{ answer.id }}'>
+                        <strong>{{ answer.user }}</strong>
+                        <span style="float:right">{{ answer.date }}</span>
+                        {% if answer.user == request.user %}
+                        <div>
+                            <div style="white-space:pre-wrap; text-align:left;">{{ answer.content }}</div>
+                            <div style="text-align: right;">
+                                <a href="/board/{{url}}/answer/delete/{{post.id}}/{{answer.id}}" role="button" >댓글삭제</a>
+                            </div>
+                        </div>
+                        <hr>
+                        {% else %}
+                        <div>
+                            <div style="white-space:pre-wrap; text-align:left;">{{ answer.content }}</div>
+                        </div>
+                        <hr>
+                        {% endif %}
+                </div>
+                <div class='{{ answer.id }}'></div>
+                {% endfor %}
+            {% endif %}
+            <input type="hidden" id="comment_writer" value={{request.user}}>
+            <div id="comment_list"></div>
+        </div>
+    </div>
 </div>
 
 <!-- <div id="delete_modal" class="modal fade" tabindex="-1" role="dialog">

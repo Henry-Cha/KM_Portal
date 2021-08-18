@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class="board_title">
-        <strong>게시판</strong>
+        <center>{{boardname}}게시판</center>
     </div>    
 <div class="container">
     <form id="boardForm" name="boardForm" method="POST">
@@ -21,13 +21,17 @@
   		        {% for post in page_obj %}
                     <tr>
                         <td>{{post.id}}</td>
-                        <td><a href="/board/{{url}}/{{ post.id }}/">{{ post.title }}</a></td>
+                        <td><a href="/board/{{url}}/{{ post.id }}/">{{ post.title }}</a>
+                                    {% if post.comments %}
+                                        <span>[{{ post.comments }}]</span>
+                                    {% endif %}
+                        </td>
                         <td>{{ post.user }}</td> <!-- 수정 : post.user ~ post.hits까지 a태그 뺌 -->
                         <td>{{ post.date }}</td>
                         <td>{{ post.hits }}</td>
                     </tr>
   		         {% endfor %}
-		    {% else %}
+ 		    {% else %}
 		<tr>
   			<td>게시물이 없습니다.</td>
 		</tr>

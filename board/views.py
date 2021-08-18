@@ -33,20 +33,23 @@ def free_index(request): # 수정함 : context url free 추가 함수이름 free
     page = request.GET.get('page', '1')
     paginator = Paginator(postList, '10')
     page_obj = paginator.page(page)
-    
-    context = {'postList': postList,'postNum':postNum,'page_obj':page_obj,'url':'free'}
+    context = {'postList': postList ,'postNum':postNum,'page_obj':page_obj,'url':'free','boardname':'일반'} 
     return render(request, 'board/list.html', context)
 
 def free_detail(request, postId): # 수정함 : 함수이름 free추가 num, lst 추가 url free 추가
     # 상세보기
     post = FreePosting.objects.get(id=postId)
+    freeAnswer = FreeAnswer.objects.filter(post=postId).order_by('created')
+    freeAnswer_count = freeAnswer.exclude().count()
+    
+    
     if request.user == post.user:
         post_auth = True
     else:
         post_auth = False
     #num = post.free.count ### free_answer_create 말고 free_detail에서 context에 num(답글 갯수)이랑 lst(답글 리스트) 넣고 detail.html에서 바인딩하기
     lst = post.free_set.all
-    context = {'post': post,'post_auth': post_auth,'url':'free','lst':lst} # 수정 : 'num':num 넣었다가 뺌
+    context = {'post': post,'post_auth': post_auth,'url':'free','lst':lst,'FreeAnswers': FreeAnswer,'freeAnswer_count': freeAnswer_count,} # 수정 : 'num':num 넣었다가 뺌
     return render(request, 'board/detail.html', context)
 
 @login_message_required
@@ -61,7 +64,8 @@ def free_boardDelete(request, postId): # 수정 : 함수이름 free 추가 if re
         return redirect('/board/free/'+str(postId))
 
 @login_message_required
-def free_boardEdit(request, postId): # 수정 /: 함수이름 free 추가 if redirect /baord >> board/free/ 변경 else redirect /board/ >> /board/free/ 변경
+def free_boardEdit(request, postId):
+    # 수정 /: 함수이름 free 추가 if redirect /baord >> board/free/ 변경 else redirect /board/ >> /board/free/ 변경
     post = FreePosting.objects.get(id=postId) # 수정 : Post >> FreePosting
     
     if request.method == "POST":
@@ -89,5 +93,23 @@ def free_boardEdit(request, postId): # 수정 /: 함수이름 free 추가 if red
 def free_answer_create(request,postId): # 수정함 : 변수이름 free 추가 post>>posting 변경 models별칭 answer_set에서 free로 변경 board:detail >> board:free_detail 변경
     # 답글 추가
     posting = get_object_or_404(FreePosting, pk=postId)
-    posting.free_set.create(content=request.POST.get('content'), date=timezone.now()) ### answer_set을 Models에 있는 class마다의 related_name으로 바꿔줌 
+
+    posting.free_set.create(user=request.user,content=request.POST.get('content'), date=timezone.now()) ### answer_set을 Models에 있는 class마다의 related_name으로 바꿔줌 
+    freeAnswer_count = FreeAnswer.objects.filter(post=postId).exclude().count()
+    posting.comments = freeAnswer_count
+    posting.save()
     return redirect('board:free_detail', postId=postId)
+
+@login_message_required
+def free_answer_delete(request,postId,answerId):
+    freePosting = get_object_or_404(FreePosting, pk=postId)
+    target_answer = FreeAnswer.objects.get(id = answerId)
+
+    if request.user == target_answer.user:
+        target_answer.delete()
+        freeAnswer_count = FreeAnswer.objects.filter(post=postId).exclude().count()
+        freePosting.comments = freeAnswer_count
+        freePosting.save()
+
+    return redirect('board:free_detail', postId=postId)
+

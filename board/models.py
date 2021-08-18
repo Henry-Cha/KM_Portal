@@ -8,6 +8,8 @@ class FreePosting(models.Model): # 수정 : Post >> FreePosting 변경
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
     date = models.DateTimeField()
     hits = models.PositiveIntegerField(default=0)
+    comments = models.PositiveIntegerField(verbose_name='댓글수', null=True)
+
 
     def __str__(self):
         return self.title

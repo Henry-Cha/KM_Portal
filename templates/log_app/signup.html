@@ -1,3 +1,4 @@
+
 <style>
     body {
     background: #C5E1A5;
@@ -100,8 +101,54 @@ $(".input").focusout(function(){
     $(this).parent().find(".label-txt").removeClass('label-active');
   };
 });
-
 });
+</script>
+<script>
+
+function check() {
+
+  if(fr.username.value == "") {
+
+    alert("모든 정보를 입력해야합니다.");
+
+    fr.username.focus();
+
+    return false;
+
+  }
+
+  else if(fr.password1.value == "") {
+
+    alert("모든 정보를 입력해야합니다.");
+
+    fr.password1.focus();
+
+    return false;
+      
+  }
+    
+ else if(fr.password2.value == "") {
+
+    alert("모든 정보를 입력해야합니다.");
+
+    fr.password2.focus();
+
+    return false;
+
+  }
+ else if(fr.STUID.value == "") {
+
+    alert("모든 정보를 입력해야합니다.");
+
+    fr.STUID.focus();
+
+    return false;
+
+  }
+  else return true;
+
+}
+
 </script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -109,7 +156,7 @@ $(".input").focusout(function(){
 
 <!------ Include the above in your HEAD tag ---------->
 <body>
-<form method="POST" action="{% url 'log_app:Signup' %}">
+<form method="POST" action="{% url 'log_app:Signup' %}" name="fr" onsubmit="return check()">
     {% csrf_token %}
     <h1 id="title"><a href='/'>KM_PORTAL</a></h1>
   <label>
