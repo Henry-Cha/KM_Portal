@@ -22,9 +22,8 @@
 </div>
 <div>
     <ul>
-        {% for answer,answriter in lst, %} <!---->
+        {% for answer in lst %} <!---->
         <li>{{ answer.content }}</li>
-        <p>{{answer.user}}</p>
         {% endfor %}
     </ul>
 </div>
