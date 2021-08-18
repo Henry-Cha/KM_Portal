@@ -25,7 +25,7 @@ def write(request):
 
 def index(request):
         # 게시물 목록 출력
-    postList = Post.objects.all().order_by('-date')
+    postList = Post.objects.all().order_by('-id')
     postNum = Post.objects.count()
         #페이징처리
     page = request.GET.get('page', '1')
