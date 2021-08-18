@@ -14,5 +14,5 @@ class PostForm(ModelForm):
         })
         
     class Meta:
-        model = Post
-        fields = ['title', 'content','user','hits','date']
+        model = FreePosting # 수정 : Post >> FreePosting 변경
+        fields = ['title', 'content']

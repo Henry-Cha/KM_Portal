@@ -1,5 +1,8 @@
+
 <head>
 <style>
+
+
 .form-heading { color:#fff; font-size:23px;}
 .panel {
     margin-bottom : 30px;
@@ -72,7 +75,7 @@
 <div class="login-form">
 <div class="main-div">
     <div class="panel">
-   <h2>KM_PORTAL</h2>
+   <h2 id="title"><a href='/'>KM_PORTAL</a></h2>
         <strong>{{error}}</strong>
    </div>
     <form id="Login" action="{% url 'log_app:Login' %}" method="POST">

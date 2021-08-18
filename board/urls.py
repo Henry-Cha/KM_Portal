@@ -4,10 +4,11 @@ from . import views
 app_name = 'board'
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('answer/create/<int:postId>/', views.answer_create, name='answer_create'),
-    path('<int:postId>/', views.detail,name='detail'),
-    path('write/', views.write, name='write'),
-    path('delete/<int:postId>', views.boardDelete, name='delete'),
-    path('edit/<int:postId>', views.boardEdit, name='boardEdit'),
+    ########## 일반 게시판 #############
+    path('free/', views.free_index, name='free_index'),
+    path('free/answer/create/<int:postId>/', views.free_answer_create, name='free_answer_create'),
+    path('free/<int:postId>/', views.free_detail,name='free_detail'),
+    path('free/write/', views.free_write, name='free_write'),
+    path('free/delete/<int:postId>', views.free_boardDelete, name='free_delete'), # 수정함 : free를 붙임
+    path('free/edit/<int:postId>', views.free_boardEdit, name='free_boardEdit'), # 수정함 : free를 붙임
 ]

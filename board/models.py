@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Post(models.Model):
+class FreePosting(models.Model): # 수정 : Post >> FreePosting 변경
     title = models.CharField(max_length=200)
     content = models.TextField()
     #writer = models.CharField(max_length=20)
@@ -17,8 +17,8 @@ class Post(models.Model):
         self.hits = self.hits + 1
         self.save()
 
-class Answer(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+class FreeAnswer(models.Model): # 수정 : Post >> FreeAnswer 변경
+    post = models.ForeignKey(FreePosting, on_delete=models.CASCADE,related_name='free_set') #  수정 : relate_name == class 별칭 추가 ForeignKey Post >> FreePosting 변경
     content = models.TextField()
     #writer = models.CharField(max_length=20)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)

@@ -21,10 +21,10 @@
   		        {% for post in page_obj %}
                     <tr>
                         <td>{{post.id}}</td>
-                        <td><a href="/board/{{ post.id }}/">{{ post.title }}</a></td>
-                        <td><a href="/board/{{ post.id }}/">{{ post.user }}</a></td>
-                        <td><a href="/board/{{ post.id }}/">{{ post.date }}</a></td>
-                        <td><a href="/board/{{ post.id }}/">{{ post.hits }}</a></td>
+                        <td><a href="/board/{{url}}/{{ post.id }}/">{{ post.title }}</a></td>
+                        <td>{{ post.user }}</td> <!-- 수정 : post.user ~ post.hits까지 a태그 뺌 -->
+                        <td>{{ post.date }}</td>
+                        <td>{{ post.hits }}</td>
                     </tr>
   		         {% endfor %}
 		    {% else %}
