@@ -24,6 +24,9 @@ urlpatterns = [
     path('news/',include('news.urls')),
     path('board/',include('board.urls')),
     path('login/', include('log_app.urls')),
+    path('my_page/',include('my_page.urls')),
+    path('qnaboard/',include('qnaBoard.urls')),
+    path('boormiboard/',include('boormiBoard.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

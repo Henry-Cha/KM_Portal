@@ -1,0 +1,133 @@
+{% extends 'main.html' %} 
+{% block content %}
+<!--{{post.update_counter}}-->
+
+<div class="card">
+    <!--제목,분류,작성일-->
+    <div class="card-header">
+        <strong>{{ post.title }}&nbsp&nbsp&nbsp&nbsp</strong>
+        <span>{{ post.date|date:'Y.m.d. H:i' }}</span>
+    </div>
+    <div class="card-body">
+        <!--작성자, 조회수-->
+        <div>
+            <span>작성자 : {{ post.user }}&nbsp&nbsp&nbsp&nbsp</span>
+            <span>조회수 : {{ post.hits }}</span>
+        </div>
+        <!--내용-->
+        <div>
+            {{ post.content }}
+        </div>
+    </div>
+</div>
+<!--수정, 삭제 -->
+<div style="   height: 30px;padding: 4px">
+    <a href="/{{url}}" style="border: 1px solid #0000003b;margin: 0 10px; padding:3px; border-radius:20%;" role="button">목록</a>
+    {% if post_auth %}
+        {% if post.complete is False %}
+         <a href="/{{url}}/edit/{{ post.id }}" style="border: 1px solid #0000003b;margin: 0 10px; padding:3px; border-radius:20%;" role="button">수정</a>
+         <a href="/{{url}}/delete/{{post.id}}" style="border: 1px solid #0000003b;margin: 0 10px; padding:3px; border-radius:20%;" role="button">삭제</a>
+        {% endif %}
+    <!-- <button class="btn btn-sm" data-toggle="modal" data-target="#delete_modal">삭제</button> -->
+    {% endif %}
+</div>
+
+<!--댓글-->
+<div class="card">
+    <div class="card-header">
+        <div class="col-md-12">
+            <form action="/{{url}}/answer/create/{{post.id}}/" method="POST">
+            {% csrf_token %}
+                {% if user.is_authenticated %}
+            <div class="form-group row">
+                <textarea class="form-control" id="content" name="content" rows="3" placeholder="댓글을 입력해주세요." minlength='0' maxlength="400"></textarea>
+            </div>
+            <div class="text-right" style="float:right">
+                    <input type="submit" value="답글등록">
+            </div>
+                {% else %}
+                        <div class="form-group row">
+                            <textarea class="form-control" id="content" name="content" rows="3" placeholder="로그인 후 사용이 가능합니다."></textarea>
+                        </div>
+                {% endif %}
+            </form>
+        </div>
+        <hr>
+        <div id="more_comment">
+            {% if lst %}
+                {% for answer in lst %}
+                <div id='{{ answer.id }}'>
+                        <strong>{{ answer.user }}
+                                    {% for aUser in answerUser %}
+                                        {% if answer.user == aUser %}
+                                            <span style="color:orange; font-size:15px;">매너온도 : {{aUser.manner}}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                        </strong>
+                    
+                        {% if answer.select %}
+                           <img src="/static/images/check.png" style="width:20px; height:20px;">   
+                        {% else %}
+                            {% if post.complete is False %}
+                                {% if post_auth %}   
+                                    {% if post.user != answer.user %}
+                                    <button class="btn btn-sm" onclick="location.href='/{{url}}/select/{{post.id}}/{{answer.id}}'">온도높이기</button>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                        <span style="float:right">{{ answer.date }}</span>
+                        {% if answer.user == request.user %}
+                        <div>
+                            <div style="white-space:pre-wrap; text-align:left;">{{ answer.content }}</div>
+                            <div style="text-align: right;">
+                                {% if answer.select is False %}
+                                <a href="/{{url}}/answer/delete/{{post.id}}/{{answer.id}}" role="button" >댓글삭제</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr>
+                        {% else %}
+                        <div>
+                            <div style="white-space:pre-wrap; text-align:left;">{{ answer.content }}</div>
+                        </div>
+                        <hr>
+                        {% endif %}
+                </div>
+            
+                <div class='{{ answer.id }}'></div>
+                {% endfor %}
+            {% endif %}
+            <input type="hidden" id="comment_writer" value={{request.user}}>
+            <div id="comment_list"></div>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="delete_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">삭제경고</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>게시글을 삭제하시겠습니까?</p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="delete_modal()" type="button" class="btn btn-dark">삭제하기</button>
+                <button type="button" class="btn btn-light" data-dismiss="modal">취소하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function delete_modal() {
+        location.replace('/board/delete/{{post.id}}');
+    }
+</script> -->
+
+{% endblock %}

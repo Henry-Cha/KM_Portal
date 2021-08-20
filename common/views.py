@@ -1,8 +1,13 @@
 from django.shortcuts import render
+from .models import *
+from board.models import *
 
 
 def index(request):
-    return render(request, 'main.html')
+    coor = Coordinate.objects.get(id=1)
+    context = { 'centerLat':coor.latitude,'centerLon':coor.longitude}
+    
+    return render(request, 'home.html',context)
 
 def service(request):
     return render(request,'serviceagreement.html')

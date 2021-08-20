@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+                <div class="card">
+                <div class="card-header">
+                    {{ form.title }}
+                </div>
+                <div>
+                    {{ form.content }}
+                </div>
+            </div>
+            <!-- <p>제목<br><textarea name='title' minmaxlength="1" maxlength="400" cols="200" rows="1"></textarea></p>
+            <p>내용<br><textarea name='content' minmaxlength="1" maxlength="400" cols="200" rows="8"></textarea></p> -->
+            <!-- <input type="submit" value="등록"> -->
+            {% if edit %}
+            <button type="submit" class="btn btn-sm">{{ edit }}</button>
+            {% else %}
+            <button type="submit" class="btn btn-sm">작성하기</button>
+            {% endif %}
+        </form>
+    </div>
+    <div>
+        <a href="/{{url}}" role="button">취소</a> <!-- 수정 : href /board >> /board/{{url}}/ 변경 -->
+    </div>
+{% endblock %}

@@ -1,8 +1,26 @@
 {% extends 'main.html' %}
 {% block content %}
-
+<style>
+ .board_title {
+        margin-top : 50px;
+        margin-bottom : 30px;
+}
+</style>
     <div class="board_title">
-        <center>{{boardname}}게시판</center>
+        {% if boardname == '자유' %}
+            <center><img src="/static/images/board/freeboard.png" id='board_img'></center>
+        {% elif boardname == '공학' %}
+            <center><img src="/static/images/board/engboard.png" id='board_img'></center>
+        {% elif boardname == '자연과학' %}
+            <center><img src="/static/images/board/sciboard.png" id='board_img'></center>
+        {% elif boardname == '의학간호' %}
+            <center><img src="/static/images/board/medboard.png" id='board_img'></center>
+        {% elif boardname == '예체능' %}
+            <center><img src="/static/images/board/artboard.png" id='board_img'></center>
+        {% elif boardname == '인문사회' %}
+            <center><img src="/static/images/board/socboard.png" id='board_img'></center>
+        {% else %}
+        {% endif %}
     </div>    
 <div class="container">
     <form id="boardForm" name="boardForm" method="POST">
@@ -19,17 +37,33 @@
             {% if page_obj %}
             <tbody>
   		        {% for post in page_obj %}
-                    <tr>
+                    
+                
+                    <tr style = "cursor:pointer;" onClick = " location.href='/board/{{url}}/{{ post.id }}/' " onMouseOver = " indow.status = '/board/{{url}}/{{ post.id }}/' " onMouseOut = " window.status = '' " >
+                        <td>{{post.id}}</td>
+                        <td>{{ post.title }}
+                            {% if post.comments %}
+                                <span>[{{ post.comments }}]</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ post.user }}</td>
+                        <td>{{ post.date }}</td>
+                        <td>{{ post.hits }}</td>
+                    </tr>
+                
+                
+                
+                    <!-- <tr>
                         <td>{{post.id}}</td>
                         <td><a href="/board/{{url}}/{{ post.id }}/">{{ post.title }}</a>
                                     {% if post.comments %}
                                         <span>[{{ post.comments }}]</span>
                                     {% endif %}
                         </td>
-                        <td>{{ post.user }}</td> <!-- 수정 : post.user ~ post.hits까지 a태그 뺌 -->
+                        <td>{{ post.user }}</td> 
                         <td>{{ post.date }}</td>
                         <td>{{ post.hits }}</td>
-                    </tr>
+                    </tr> -->
   		         {% endfor %}
  		    {% else %}
 		<tr>
@@ -40,9 +74,9 @@
         </table>
         <div>
             {% if user.is_authenticated %}
-        <a href="write/" class="btn btn-success">글작성</a>
+        <a href="write/" class="btn btn-success"  style="background-color: #ffebb8; color: #171717;">글작성</a>
             {% else %}
-            <a href="{% url 'log_app:Login' %}" class="btn btn-success">글작성</a>
+            <a href="{% url 'log_app:Login' %}" class="btn btn-success" style="background-color: #ffebb8; color: #171717;">글작성</a>
             {% endif %}
         </div>
     </form>

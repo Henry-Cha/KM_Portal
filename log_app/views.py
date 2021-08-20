@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from .models import CustomUser
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
@@ -28,14 +28,15 @@ def logout_view(request):
 
 def signup_view(request):
     if request.method == "POST":
-        if User.objects.filter(username=request.POST['username']).exists():
+        if CustomUser.objects.filter(username=request.POST['username']).exists():
             return render(request, 'log_app/signup.html', {'error': '이 아이디로 가입한 계정이 존재합니다.'})
         
-        elif User.objects.filter(email=request.POST['STUID']).exists():
+        elif CustomUser.objects.filter(email = str(request.POST['STUID'])+"@kmu.kr").exists():
              return render(request, 'log_app/signup.html', {'error': '이 이메일로 가입한 계정이 존재합니다.'})
             
         elif request.POST["password1"] == request.POST["password2"]:
-            user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'], email=request.POST['STUID'])
+            Email = str(request.POST['STUID'])+"@stu.kmu.ac.kr"
+            user = CustomUser.objects.create_user(username=request.POST['username'], password=request.POST['password1'], email=Email)
             # user.is_active = False
             user.save()
             # current_site = get_current_site(request)
@@ -46,7 +47,7 @@ def signup_view(request):
             #     'token': account_activation_token.make_token(user),
             # })
             # mail_title = "계정 활성화 확인 이메일"
-            # mail_to = request.POST["STUID"]+".@kmu.kr"
+            # mail_to = request.POST["STUID"]+"@stu.kmu.ac.kr"
             # email = EmailMessage(mail_title,message,to=[mail_to])
             # email.send()
             return redirect('/')
@@ -58,8 +59,8 @@ def signup_view(request):
 def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExsit):
+        user = CustomUser.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, CustomUser.DoesNotExsit):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True

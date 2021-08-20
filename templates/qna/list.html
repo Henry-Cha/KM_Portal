@@ -1,0 +1,177 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<div style="display:flex; justify-content: center;">
+    <div id="ranking_view" style="">
+    <img src="/static/images/ranking.png" style="object-fit: cover; width: -webkit-fill-available;">
+    <table class="table table-striped table-hover" style="width: -webkit-fill-available;;">
+        <thead>
+        <tr style="width:auto;">
+            <th style="width:auto;">순위</th>
+            <th style="width:auto;">아이디</th>
+            <th style="width:auto;">점수</th>
+        </tr>
+        </thead>
+        <tbody>
+        
+        {% for rankName,rankNaegong in rankList %}
+            <tr>
+        <th style="width:auto;">
+            <span>{{forloop.counter}}위</span>
+        </th>
+
+            {% if forloop.counter == 1 %}
+            <th style="width:auto;"><span><img src="/static/images/medal/gold.png" style="object-fit: cover; height: 20px;">{{rankName}}</span></th>
+            {% elif forloop.counter == 2 %}
+            <th style="width:auto;"><span><img src="/static/images/medal/silver.png" style="object-fit: cover; height: 20px;">{{rankName}}</span></th>
+            {% elif forloop.counter == 3 %}
+            <th style="width:auto;"><span><img src="/static/images/medal/bronze.png" style="object-fit: cover; height: 20px;">{{rankName}}</span></th>
+            {% else %}
+            <th style="width:auto;"><span>{{rankName}}</span></th>
+            {% endif %}
+            <th style="width:auto;"><span>{{rankNaegong}}점</span></th>
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+</div>
+<div id="qna_list_view"class="" style="">
+
+    <div class="board_title">
+        <center><img src="/static/images/board/qnaboard.png" id='board_img'></center>
+    </div>    
+<div class="container">
+    <form id="boardForm" name="boardForm" method="POST">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th style="width:60px;">번호</th>
+                    <th style="width:60px;">상태</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th style="width:200px;">날짜</th>
+                    <th style="width:90px;">조회수</th>
+                </tr>
+            </thead>
+            {% if page_obj %}
+            <tbody>
+  		        {% for post in page_obj %}
+                    
+                
+                    <tr style = "cursor:pointer;" onClick = " location.href='/{{url}}/{{ post.id }}/' " onMouseOver = " indow.status = '/{{url}}/{{ post.id }}/' " onMouseOut = " window.status = '' " >
+                        <td>{{post.id}}</td>
+                        <td>
+                            {% if post.complete %}
+                            <img src="/static/images/check.png" style="width:20px; height:20px;">
+                            {% else %}
+                            <img src="/static/images/minus.png" style="width:20px; height:20px;"> 
+                            {% endif %}
+                        </td>
+                        <td>{{ post.title }}
+                            {% if post.comments %}
+                                <span>[{{ post.comments }}]</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ post.user }}</td>
+                        <td>{{ post.date|date:'m.d. H:i'  }}</td>
+                        <td>{{ post.hits }}</td>
+                    </tr>
+                
+                
+                
+                    <!-- <tr>
+                        <td>{{post.id}}</td>
+                        <td><a href="/board/{{url}}/{{ post.id }}/">{{ post.title }}</a>
+                                    {% if post.comments %}
+                                        <span>[{{ post.comments }}]</span>
+                                    {% endif %}
+                        </td>
+                        <td>{{ post.user }}</td> 
+                        <td>{{ post.date }}</td>
+                        <td>{{ post.hits }}</td>
+                    </tr> -->
+  		         {% endfor %}
+ 		    {% else %}
+		<tr>
+  			<td>게시물이 없습니다.</td>
+		</tr>
+		{% endif %}
+            </tbody>
+        </table>
+        <div>
+            {% if user.is_authenticated %}
+        <a href="write/" class="btn btn-success"  style="background-color: #ffebb8; color: #171717;">글작성</a>
+            {% else %}
+            <a href="{% url 'log_app:Login' %}" class="btn btn-success"  style="background-color: #ffebb8; color: #171717;">글작성</a>
+            {% endif %}
+        </div>
+    </form>
+        <!-- Pagination -->
+        <!-- 페이징처리 시작 -->
+    <div id="paging">
+        <ul class="pagination justify-content-center" style="margin-top: 2rem;">
+            <!-- 이전페이지 -->
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?&page=1">첫페이지</a>
+                <!-- href로 뎁스 설정 -->
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?&page={{ page_obj.previous_page_number }}">이전</a>
+                <!-- href로 뎁스 설정 -->
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="?&page=1">첫페이지</a>
+                <!-- href로 뎁스 설정 -->
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+            </li>
+            {% endif %}
+            <!-- 페이지리스트 -->
+            {% for page_number in page_obj.paginator.page_range %}
+
+            {% if page_number < page_obj.number|add:3 and page_number > page_obj.number|add:-3 %}
+                {% if page_number == page_obj.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}</a>
+                </li>
+                {% endif %}
+            {% elif page_number < page_obj.number|add:4 and page_number > page_obj.number|add:-4 %}
+            <li class="page-item">
+                <a class="page-link" href="#">...</a>
+            </li>
+            {% else %}
+            {% endif %}
+            {% endfor %}
+            <!-- 다음페이지 -->
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?&page={{ page_obj.next_page_number }}">다음</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?&page={{ page_obj.paginator.num_pages }}">끝페이지</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            </li>
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">끝페이지</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    <!-- 페이징처리 끝 -->
+</div>
+</div>
+<div id="qna_empty" style="">
+</div>
+</div>
+{% endblock %}

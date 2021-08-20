@@ -161,7 +161,7 @@ function check() {
     <h1 id="title"><a href='/'>KM_PORTAL</a></h1>
   <label>
     <p class="label-txt">아이디</p>
-    <input type="text" class="input" name="username" minlength="3" maxlength="64">
+    <input type="text" class="input" name="username" minlength="3" maxlength="10">
     <div class="line-box">
       <div class="line"></div>
     </div>
@@ -175,14 +175,15 @@ function check() {
   </label>
   <label>
     <p class="label-txt">비밀번호 확인</p>
-    <input type="password" class="input" name="password2" minlength="3" maxlength="64">
+    <input type="password" class="input" name="password2" minlength="3" maxlength="64" onkeydown="onlyNumber(this)"
+>
     <div class="line-box">
       <div class="line"></div>
     </div>
   </label>
   <label>
-    <p class="label-txt">이메일</p>
-    <input type="email" name="STUID" class="input" placeholder="학교계정을 입력해주세요.">
+    <p class="label-txt">학번</p>
+    <input type="text" name="STUID" class="input" placeholder="학번을 입력해주세요." minlength="7" maxlength="7" onKeyup="this.value=this.value.replace(/[^0-9]/g,'')">
     <div class="line-box">
       <div class="line"></div>
     </div>

@@ -1,0 +1,1195 @@
+{% extends 'main.html' %} 
+{% block content %}
+<style>
+.box {
+    max-width:800px;
+    margin:50px;
+}
+    
+#map{
+        
+}
+</style>
+<img id="main_background" src="/static/images/school.gif" style="">
+
+<div style="display:flex; justify-content: center;">
+    <div class="box">
+        <div id="map" style=""></div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5c2fe2c31a3c0aeaed34eff602ac3eb"></script>
+<script>
+    var container = document.getElementById('map');
+    var options = {
+        center: new kakao.maps.LatLng({{centerLat}}, {{centerLon}}),
+        level: 3
+    };
+    var map = new kakao.maps.Map(container, options);
+
+    var positions = new Array();    
+
+
+    
+    // 지도에 마커를 표시합니다 
+var marker1 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85534833720473, 128.48569272749938)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content1 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            봉경관(사)' + 
+            '            <div class="close" onclick="closeOverlay1()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/1.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">사회과학대학</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-5392</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay1
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker1, 'click', function() {
+    overlay1 = new kakao.maps.CustomOverlay({
+    content: content1,
+    map: map,
+    position: marker1.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay1() {
+    overlay1.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+       
+    // 지도에 마커를 표시합니다 
+var marker2 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.855336501627605, 128.47934963592718)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content2 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            간호대학(N)' + 
+            '            <div class="close" onclick="closeOverlay2()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/2.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">간호대학</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-258-7615</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay2
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker2, 'click', function() {
+    overlay2 = new kakao.maps.CustomOverlay({
+    content: content2,
+    map: map,
+    position: marker2.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay2() {
+    overlay2.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+        
+    // 지도에 마커를 표시합니다 
+var marker3 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.855087801510436, 128.4805183872383)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content3 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            의과대학(M)' + 
+            '            <div class="close" onclick="closeOverlay3()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/3.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">의과대학</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-258-7313<br>4F 자기주도학습실</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay3
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker3, 'click', function() {
+    overlay3 = new kakao.maps.CustomOverlay({
+    content: content3,
+    map: map,
+    position: marker3.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay3() {
+    overlay3.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+            
+    // 지도에 마커를 표시합니다 
+var marker4 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.856267056290896, 128.48500141101488)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content4 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            의양관(의)' + 
+            '            <div class="close" onclick="closeOverlay4()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/4.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">경영대학,이부대학</div>' + 
+            '                <div class="jibun ellipsis">경영대 행정실 : 053-580-6363<br>이부대 행정실 : 053-580-5502</div>' +  
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay4
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker4, 'click', function() {
+    overlay4 = new kakao.maps.CustomOverlay({
+    content: content4,
+    map: map,
+    position: marker4.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay4() {
+    overlay4.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker5 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85481424482324, 128.48224014401288)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content5 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            보산관(보)' + 
+            '            <div class="close" onclick="closeOverlay5()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/5.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">약학대학</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-6642</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay5
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker5, 'click', function() {
+    overlay5 = new kakao.maps.CustomOverlay({
+    content: content5,
+    map: map,
+    position: marker5.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay5() {
+    overlay5.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker6 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.8537763733859, 128.48236472374896)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content6 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            백은관(백)' + 
+            '            <div class="close" onclick="closeOverlay6()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/6.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">자연과학대학</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-5033</div>' +  
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay6
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker6, 'click', function() {
+    overlay6 = new kakao.maps.CustomOverlay({
+    content: content6,
+    map: map,
+    position: marker6.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay6() {
+    overlay6.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker7 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.854088273451154, 128.4841084278327)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content7 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            영암관(영)' + 
+            '            <div class="close" onclick="closeOverlay7()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/7.PNG" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">인문국제학대학,사범대학</div>' + 
+            '                <div class="jibun ellipsis">인문대 행정실 : 053-580-5013<br>사범대 행정실 : 053-580-5222<br>1F 임용고사실,자율학습실</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay7
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker7, 'click', function() {
+    overlay7 = new kakao.maps.CustomOverlay({
+    content: content7,
+    map: map,
+    position: marker7.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay7() {
+    overlay7.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker8 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.856473076260514, 128.48364367622068)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content8 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            스미스관(스)' + 
+            '            <div class="close" onclick="closeOverlay8()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/8.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">인문국제학대학(국제지역학부)</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-5013<br>BF 일반열람실,학습실<br>4F 취업및공모전 스터디룸<br>5F 취업및공모전 스터디룸</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay8
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker8, 'click', function() {
+    overlay8 = new kakao.maps.CustomOverlay({
+    content: content8,
+    map: map,
+    position: marker8.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay8() {
+    overlay8.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker9 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85888979527497, 128.4869658730984)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content9 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            공학관(공,건)' + 
+            '            <div class="close" onclick="closeOverlay9()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/9.PNG" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">공과대학</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-5262<br>1F 카페,휴게실</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay9
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker9, 'click', function() {
+    overlay9 = new kakao.maps.CustomOverlay({
+    content: content9,
+    map: map,
+    position: marker9.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay9() {
+    overlay9.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker10 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85798469811748, 128.48893007200698)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content10 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            오산관(오)' + 
+            '            <div class="close" onclick="closeOverlay10()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/10.PNG" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">자연과학대학(환경학부)</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-5033</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay10
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker10, 'click', function() {
+    overlay10 = new kakao.maps.CustomOverlay({
+    content: content10,
+    map: map,
+    position: marker10.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay10() {
+    overlay10.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker11 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85742117014581, 128.4893180471291)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content11 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            쉐턱관(쉐)' + 
+            '            <div class="close" onclick="closeOverlay11()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/11.PNG" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">사회과학대학(법학,경찰행정,경찰법학과),Tabula Rasa College</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-5392</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay11
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker11, 'click', function() {
+    overlay11 = new kakao.maps.CustomOverlay({
+    content: content11,
+    map: map,
+    position: marker11.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay11() {
+    overlay11.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker12 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85449372082182, 128.48993852052033)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content12 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            체육관(체)' + 
+            '            <div class="close" onclick="closeOverlay12()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/12.PNG" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">체육대학</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-6210</div>' +  
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay12
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker12, 'click', function() {
+    overlay12 = new kakao.maps.CustomOverlay({
+    content: content12,
+    map: map,
+    position: marker12.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay12() {
+    overlay12.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker13 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85287154719352, 128.49067194111493)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content13 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            음악공연예술대학(음)' + 
+            '            <div class="close" onclick="closeOverlay13()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/13.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">음악공연예술대학</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-6522</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay13
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker13, 'click', function() {
+    overlay13 = new kakao.maps.CustomOverlay({
+    content: content13,
+    map: map,
+    position: marker13.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay13() {
+    overlay13.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker14 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.853234305732926, 128.484482702221)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content14 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            동영관(국)' + 
+            '            <div class="close" onclick="closeOverlay14()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/22.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">Keimyung Adams College</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-6502</div>' +  
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay14
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker14, 'click', function() {
+    overlay14 = new kakao.maps.CustomOverlay({
+    content: content14,
+    map: map,
+    position: marker14.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay14() {
+    overlay14.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker15 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85642238563465, 128.4871169977778)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content15 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            동산도서관' + 
+            '            <div class="close" onclick="closeOverlay15()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/15.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">동산도서관</div>' + 
+            '                <div class="jibun ellipsis">1F 열람실<br>2F 대출<br>3F 멀티미디어<br>4,5F 자료실<br></div>' +  
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay15
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker15, 'click', function() {
+    overlay15 = new kakao.maps.CustomOverlay({
+    content: content15,
+    map: map,
+    position: marker15.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay15() {
+    overlay15.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker16 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85827452385265, 128.4893700531639)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content16 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            복지관(공대식당)' + 
+            '            <div class="close" onclick="closeOverlay16()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/16.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">1F식당</div>' + 
+            '                <div class="jibun ellipsis">추천메뉴 : 냉모밀, 편의점김밥</div>' +  
+            '                <div class="ellipsis">2F식당</div>' + 
+            '                <div class="jibun ellipsis">추천메뉴 : 돈까스</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay16
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker16, 'click', function() {
+    overlay16 = new kakao.maps.CustomOverlay({
+    content: content16,
+    map: map,
+    position: marker16.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay16() {
+    overlay16.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+            
+    // 지도에 마커를 표시합니다 
+var marker17 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85426348577779, 128.48608945255017)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content17 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            (구)바우어관' + 
+            '            <div class="close" onclick="closeOverlay17()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/17.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">BF 식당</div>' + 
+            '                <div class="jibun ellipsis">추천메뉴 : 차돌된장찌개, 닭갈비덮밥</div>' +  
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay17
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker17, 'click', function() {
+    overlay17 = new kakao.maps.CustomOverlay({
+    content: content17,
+    map: map,
+    position: marker17.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay17() {
+    overlay17.setMap(null);     
+}
+    
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+               
+    // 지도에 마커를 표시합니다 
+var marker18 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85385912897038, 128.4854618157367)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content18 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            (신)바우어관' + 
+            '            <div class="close" onclick="closeOverlay18()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/18.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">1F 인터내셔널 라운지,복사실</div>' + 
+            '                <div class="ellipsis">2F 식당,카페</div>' + 
+            '                <div class="jibun ellipsis">추천메뉴 : 핫치킨리조또,차돌된장 </div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay18
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker18, 'click', function() {
+    overlay18 = new kakao.maps.CustomOverlay({
+    content: content18,
+    map: map,
+    position: marker18.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay18() {
+    overlay18.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+                   
+    // 지도에 마커를 표시합니다 
+var marker19 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85550697871084, 128.48774705765655)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content19 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            IT융합교육센터(전산원)' + 
+            '            <div class="close" onclick="closeOverlay19()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/19.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">비교과 프로그램등</div>' + 
+            '                <div class="jibun ellipsis"></div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay19
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker19, 'click', function() {
+    overlay19 = new kakao.maps.CustomOverlay({
+    content: content19,
+    map: map,
+    position: marker19.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay19() {
+    overlay19.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+                       
+    // 지도에 마커를 표시합니다 
+var marker20 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.854139884065695, 128.48254642953927)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content20 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            아람관' + 
+            '            <div class="close" onclick="closeOverlay20()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/20.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">2F 동아리방' +
+            '                <div class="ellipsis">3F 양식당,한식당' +
+            '                <div class="jibun ellipsis">추천메뉴 : 비빔밥 된장찌개,떡볶이,수제돈까스,콩나물 신라면 </div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay20
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker20, 'click', function() {
+    overlay20 = new kakao.maps.CustomOverlay({
+    content: content20,
+    map: map,
+    position: marker20.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay20() {
+    overlay20.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+                           
+    // 지도에 마커를 표시합니다 
+var marker21 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85689392741103, 128.48059108234295)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content21 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            명교생활관(명교나루)' + 
+            '            <div class="close" onclick="closeOverlay21()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/21.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">명교생활관</div>' + 
+            '                <div class="jibun ellipsis">053-580-6882<br>편의점,택배,헬스장,농구장,흡연장 등</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay21
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker21, 'click', function() {
+    overlay21 = new kakao.maps.CustomOverlay({
+    content: content21,
+    map: map,
+    position: marker21.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay21() {
+    overlay21.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+                             
+    // 지도에 마커를 표시합니다 
+var marker22 = new kakao.maps.Marker({
+    map: map, 
+    position: new kakao.maps.LatLng(35.85403403776472, 128.4879578887724)
+});
+// 커스텀 오버레이에 표시할 컨텐츠 입니다
+var content22 = '<div class="wrap">' + 
+            '    <div class="info">' + 
+            '        <div class="title">' + 
+            '            동천관(대학원)' + 
+            '            <div class="close" onclick="closeOverlay22()" title="닫기"></div>' + 
+            '        </div>' + 
+            '        <div class="body">' + 
+            '            <div class="img">' +
+            '                <img src="/static/images/map/22.jpg" width="73" height="70">' +
+            '           </div>' + 
+            '            <div class="desc">' + 
+            '                <div class="ellipsis">대학원</div>' + 
+            '                <div class="jibun ellipsis">행정실 : 053-580-6252</div>' + 
+            '            </div>' + 
+            '        </div>' + 
+            '    </div>' +    
+            '</div>';
+// 마커 위에 커스텀오버레이를 표시합니다
+var overlay22
+// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+kakao.maps.event.addListener(marker22, 'click', function() {
+    overlay22 = new kakao.maps.CustomOverlay({
+    content: content22,
+    map: map,
+    position: marker22.getPosition()       
+});
+});
+// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+function closeOverlay22() {
+    overlay22.setMap(null);     
+}
+    
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
+    
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content23 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">1호관</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position23 = new kakao.maps.LatLng(35.85905191730245, 128.48760905525978);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay23 = new kakao.maps.CustomOverlay({
+    position: position23,
+    content: content23   
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay23.setMap(map);
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+        
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content24 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">2호관</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position24 = new kakao.maps.LatLng(35.85926030460112, 128.48690084089438);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay24 = new kakao.maps.CustomOverlay({
+    position: position24,
+    content: content24   
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay24.setMap(map);
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+            
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content25 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">3호관</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position25 = new kakao.maps.LatLng(35.859848904362984, 128.4870497012387);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay25 = new kakao.maps.CustomOverlay({
+    position: position25,
+    content: content25   
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay25.setMap(map);
+    
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+                
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content26 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">4호관</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position26 = new kakao.maps.LatLng(35.85972826004742, 128.48770829548934);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay26 = new kakao.maps.CustomOverlay({
+    position: position26,
+    content: content26   
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay26.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                    
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content27 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">7호관(건)</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position27 = new kakao.maps.LatLng(35.85944310002613, 128.48629186675853);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay27 = new kakao.maps.CustomOverlay({
+    position: position27,
+    content: content27  
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay27.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                        
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content28 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position28 = new kakao.maps.LatLng(35.85860108247837, 128.4866537184169);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay28 = new kakao.maps.CustomOverlay({
+    position: position28,
+    content: content28  
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay28.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                            
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content29 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position29 = new kakao.maps.LatLng(35.85760545897901, 128.48906770633425);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay29 = new kakao.maps.CustomOverlay({
+    position: position29,
+    content: content29 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay29.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                              
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content30 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position30 = new kakao.maps.LatLng(35.855692435460014, 128.48977580951168);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay30 = new kakao.maps.CustomOverlay({
+    position: position30,
+    content: content30 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay30.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                               
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content31 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position31 = new kakao.maps.LatLng(35.85474025428125, 128.4911651936985);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay31 = new kakao.maps.CustomOverlay({
+    position: position31,
+    content: content31 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay31.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                                   
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content32 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position32 = new kakao.maps.LatLng(35.85644277936652, 128.4849265570356);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay32 = new kakao.maps.CustomOverlay({
+    position: position32,
+    content: content32 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay32.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                                       
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content33 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position33 = new kakao.maps.LatLng(35.85387754060175, 128.48269495922793);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay33 = new kakao.maps.CustomOverlay({
+    position: position33,
+    content: content33 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay33.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                                          
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content34 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position34 = new kakao.maps.LatLng(35.85349708810922, 128.48602376709263);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay34 = new kakao.maps.CustomOverlay({
+    position: position34,
+    content: content34 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay34.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                                             
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content35 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position35 = new kakao.maps.LatLng(35.85611649107393, 128.48332299723475);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay35 = new kakao.maps.CustomOverlay({
+    position: position35,
+    content: content35 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay35.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                                                
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content36 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position36 = new kakao.maps.LatLng(35.85638719166928, 128.4865479992207);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay36 = new kakao.maps.CustomOverlay({
+    position: position36,
+    content: content36 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay36.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                                                   
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content37 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position37 = new kakao.maps.LatLng(35.85688019933395, 128.47994250341642);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay37 = new kakao.maps.CustomOverlay({
+    position: position37,
+    content: content37 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay37.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+                                                     
+    // 커스텀 오버레이에 표시할 내용입니다   
+var content38 = '<div class ="labelM"><span class="leftM"></span><span class="centerM">흡연</span><span class="rightM"></span></div>';
+
+// 커스텀 오버레이가 표시될 위치입니다 
+var position38 = new kakao.maps.LatLng(35.85836818652861, 128.48175138215615);  
+
+// 커스텀 오버레이를 생성합니다
+var customOverlay38 = new kakao.maps.CustomOverlay({
+    position: position38,
+    content: content38 
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay38.setMap(map);
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+  
+    </script>
+
+
+
+{% endblock %}

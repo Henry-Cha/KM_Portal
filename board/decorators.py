@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from .models import User
 from django.http import HttpResponse
+from log_app.models import CustomUser  # log_app/models.py 임포트
 
 # 로그인 확인
 def login_message_required(function):

@@ -64,7 +64,29 @@
 .back a {color: #444444; font-size: 13px;text-decoration: none;}
 
 </style>
+<script>
 
+function check() {
+
+  if(fr.ID.value == "") {
+
+    alert("아이디와 비밀번호 모두 입력해주세요.");
+
+    fr.ID.focus();
+
+    return false;
+
+  }
+    
+  else if(fr.Password.value=="") {
+      alert("아이디와 비밀번호 모두 입력해주세요.");
+      fr.Password.focus();
+      return false;
+  }
+    
+    return true;
+}
+    </script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -78,7 +100,7 @@
    <h2 id="title"><a href='/'>KM_PORTAL</a></h2>
         <strong>{{error}}</strong>
    </div>
-    <form id="Login" action="{% url 'log_app:Login' %}" method="POST">
+    <form id="Login" action="{% url 'log_app:Login' %}" method="POST" name="fr" onsubmit="return check();">
       {% csrf_token %}
         <div class="form-group">
 
