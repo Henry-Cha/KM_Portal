@@ -1,0 +1,2 @@
+secret키 주석
+api app키 가리고
