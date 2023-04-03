@@ -1,6 +1,10 @@
 ## KM_Portal
 > 계명대학교 하계방학 해커톤 최우수(1등) 수상  
 4조 계명포털 - 계대 학생들을 위한 커뮤니티
+
+<img width="205" alt="교내캡스톤 최우수" src="https://user-images.githubusercontent.com/74866067/229506212-2e6b69e8-efbd-4df7-ab8b-7c3d7ea1c5b9.png">
+
+
 <br>
 <br>
 
